@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Sayeed Academy — premium free course learning app.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Sayeed Academy</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="Sayeed Academy">
+      <div><strong>Sayeed</strong><span>ACADEMY</span></div>
+    </div>
+    <div class="side-label">LEARNING</div>
+    <nav class="nav">
+      <button class="nav-link active" data-page="home"><i>⌂</i><span>Home</span></button>
+      <button class="nav-link" data-page="courses"><i>▦</i><span>Courses</span><b id="courseCount">1</b></button>
+      <button class="nav-link" data-page="library"><i>▤</i><span>My Library</span></button>
+      <button class="nav-link" data-page="bookmarks"><i>☆</i><span>Bookmarks</span></button>
+    </nav>
+    <div class="side-label admin-label">SYSTEM</div>
+    <nav class="nav">
+      <button class="nav-link" data-page="admin"><i>⚙</i><span>Admin</span></button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="theme-btn" id="themeBtn"><span id="themeIcon">☀</span><span id="themeText">Light theme</span></button>
+      <div class="mini-brand"><span class="status-dot"></span> Free edition • GitHub ready</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+      <div class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Search courses, modules, lessons..." /></div>
+      <div class="top-right">
+        <button class="icon-btn" id="themeTop" title="Theme">◐</button>
+        <button class="profile">SA</button>
+      </div>
+    </header>
+
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="kicker">SAYEED ACADEMY • LEARNING HUB</span>
+          <h1>Learn. Build.<br><em>Sell smarter.</em></h1>
+          <p>A focused learning space for practical courses, structured modules, video lessons and study resources.</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-open-course="course-ai-automation">Start Learning <span>→</span></button>
+            <button class="btn ghost" data-page="courses">Explore Courses</button>
+          </div>
+          <div class="hero-points"><span>✓ Mobile ready</span><span>✓ Free hosting</span><span>✓ Your content</span></div>
+        </div>
+        <div class="hero-visual">
+          <div class="ring ring-a"></div><div class="ring ring-b"></div>
+          <img src="assets/images/logo.png" alt="" class="hero-logo">
+          <div class="stat-card card-a"><strong id="heroCourseCount">01</strong><small>Course</small></div>
+          <div class="stat-card card-b"><strong>∞</strong><small>Learning potential</small></div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><span class="kicker">CURATED FOR YOU</span><h2>Featured Course</h2></div>
+        <button class="link-btn" data-page="courses">View all →</button>
+      </div>
+      <div id="homeCourses" class="course-grid"></div>
+
+      <div class="feature-row">
+        <div class="feature"><span>▶</span><div><b>Video-first learning</b><small>Play lessons directly inside the app.</small></div></div>
+        <div class="feature"><span>PDF</span><div><b>Study resources</b><small>Open notes and PDFs from each module.</small></div></div>
+        <div class="feature"><span>↗</span><div><b>Free infrastructure</b><small>GitHub + YouTube + Telegram workflow.</small></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-courses">
+      <div class="page-head"><div><span class="kicker">COURSE LIBRARY</span><h2>All Courses</h2><p>Pick a course to view its modules and lessons.</p></div><div class="result-count" id="resultCount"></div></div>
+      <div class="filter-bar"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="free">Free</button><button class="filter" data-filter="premium">Premium</button><button class="filter" data-filter="ai">AI & Automation</button></div>
+      <div id="allCourses" class="course-grid"></div>
+      <div id="noResults" class="empty hidden"><div class="empty-icon">⌕</div><h3>No matching course</h3><p>Try another search.</p></div>
+    </section>
+
+    <section class="page" id="page-library">
+      <div class="page-head"><div><span class="kicker">YOUR PROGRESS</span><h2>My Library</h2><p>Recently opened courses and saved progress live here.</p></div></div>
+      <div id="libraryContent"></div>
+    </section>
+
+    <section class="page" id="page-bookmarks">
+      <div class="page-head"><div><span class="kicker">SAVED</span><h2>Bookmarks</h2><p>Keep important lessons close.</p></div></div>
+      <div id="bookmarkContent"></div>
+    </section>
+
+    <section class="page" id="page-admin">
+      <div class="page-head admin-head"><div><span class="kicker">LOCAL CONTROL CENTER</span><h2>Admin Panel</h2><p>Manage courses without a paid database. Data is stored in this browser.</p></div><button class="btn primary" id="exportBtn">Export Data</button></div>
+      <div class="admin-warning"><b>Free architecture</b><span>This version uses LocalStorage. Your GitHub site stays static and free. When you want cloud sync/login later, a backend can be added without redesigning the UI.</span></div>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="card-top"><span>COURSE</span><b>01</b></div>
+          <h3>Add / edit course</h3>
+          <label>Course title<input id="aTitle" value="Learn to Sell Digital Products Using AI on Automation"></label>
+          <label>Category<input id="aCategory" value="AI & Automation"></label>
+          <label>Access<select id="aAccess"><option value="premium">Premium</option><option value="free">Free</option></select></label>
+          <label>Description<textarea id="aDesc">A practical learning path for creating, packaging and selling digital products with AI-powered automation.</textarea></label>
+          <button class="btn primary full" id="saveCourseBtn">Save Course</button>
+        </div>
+        <div class="admin-card">
+          <div class="card-top"><span>LESSON MEDIA</span><b>FREE</b></div>
+          <h3>Video & PDF links</h3>
+          <p class="muted">Paste a YouTube video URL for in-app playback. Paste a Telegram message/resource URL for the PDF button. No video is stored on GitHub.</p>
+          <label>YouTube Video URL<input id="aVideo" placeholder="https://www.youtube.com/watch?v=..."></label>
+          <label>Telegram PDF / Resource URL<input id="aPdf" placeholder="https://t.me/..."></label>
+          <button class="btn secondary full" id="saveMediaBtn">Save Media</button>
+          <div class="tiny-note">For private Telegram files, the Telegram link may require the viewer to have access to the channel. The app does not bypass Telegram permissions.</div>
+        </div>
+        <div class="admin-card wide">
+          <div class="card-top"><span>MODULES</span><b>STRUCTURE</b></div>
+          <h3>Course module builder</h3>
+          <div id="adminModules"></div>
+          <div class="add-row"><input id="moduleName" placeholder="New module name"><button class="btn secondary" id="addModuleBtn">+ Add Module</button></div>
+        </div>
+        <div class="admin-card wide">
+          <div class="card-top"><span>BACKUP</span><b>LOCAL</b></div>
+          <h3>Backup & restore</h3>
+          <p class="muted">Export creates a JSON backup of course settings, links, modules, progress and bookmarks. Import it on another browser/device later.</p>
+          <div class="add-row"><input type="file" id="importFile" accept=".json"><button class="btn secondary" id="resetBtn">Reset Demo Data</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="courseModal">
+  <div class="modal">
+    <button class="modal-close" id="closeModal">×</button>
+    <div id="courseDetail"></div>
+  </div>
+</div>
+
+<div class="video-backdrop" id="videoModal">
+  <div class="video-modal">
+    <button class="modal-close" id="closeVideo">×</button>
+    <div class="video-frame" id="videoFrame"></div>
+    <div class="video-info"><span class="kicker">NOW PLAYING</span><h3 id="videoTitle"></h3><p>Video is loaded from YouTube; Sayeed Academy does not store the video file on GitHub.</p></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
